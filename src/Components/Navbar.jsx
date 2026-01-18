@@ -2,14 +2,19 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="bg-purple-200 ">
-      <div className="logo">PassOp</div>
+    <nav className="bg-purple-200 flex items-center justify-between px-4 h-14">
+      <div className="logo font-bold">PassOp</div>
       <ul>
-        <li>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Download</a>
+        <li className="flex gap-4">
+          <a className="font-semibold hover:font-bold" href="#">
+            Home
+          </a>
+          <a className="font-semibold hover:font-bold" href="#">
+            About
+          </a>
+          <a className="font-semibold hover:font-bold" href="#">
+            Contact
+          </a>
         </li>
       </ul>
     </nav>

@@ -1,16 +1,38 @@
-# React + Vite
+🔐 PassOP – Password Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PassOP is a password manager web application built using React (Vite) and Tailwind CSS.
+It allows users to securely store, view, edit, delete, and copy passwords.
+The project starts with Local Storage for data persistence and is later extended to a full-stack application using Express.js and MongoDB.
 
-Currently, two official plugins are available:
+This project was built while learning React by following the CodeWithHarry React tutorial series.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
 
-## React Compiler
+➕ Add new passwords
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👁️ View saved passwords
 
-## Expanding the ESLint configuration
+📋 Copy passwords to clipboard
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✏️ Edit existing passwords
+
+🗑️ Delete passwords
+
+💾 Data stored using Local Storage
+
+🔔 Toast notifications using React Toastify
+
+📱 Fully responsive design
+
+🌐 Backend integration with Express & MongoDB
+
+🛠️ Tech Stack
+Frontend
+React (Vite)
+Tailwind CSS
+JavaScript
+React Toastify
+Backend
+Node.js
+Express.js
+MongoDB

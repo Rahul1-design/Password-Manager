@@ -32,7 +32,12 @@ const Manager = () => {
               id=""
             />
           </div>
-          <button className="bg-gray-800 rounded-xl w-1/2 h-8 flex cursor-pointer lg:h-10 items-center justify-center hover:bg-gray-600 transition:bg duration-500 font-semibold  mx-auto text-center">
+          <button className="group bg-gray-800 rounded-xl w-1/2 h-8 flex gap-3 cursor-pointer lg:h-10 items-center justify-center hover:bg-gray-600 transition:bg duration-500 font-semibold  mx-auto text-center">
+            <lord-icon
+              src="https://cdn.lordicon.com/lzsupfwm.json"
+              trigger="hover"
+              className="group-hover:animate-bounce"
+            ></lord-icon>
             Add Password
           </button>
         </div>

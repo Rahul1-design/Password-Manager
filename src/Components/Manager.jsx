@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 const Manager = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setform] = useState({ site: "", username: "", password: "" });
-  const [passwordArray, setPasswordArray] = useState([]);
-
-  useEffect(() => {
+  const [passwordArray, setPasswordArray] = useState(() => {
     let passwords = localStorage.getItem("passwords");
-    if (passwords) {
-      setPasswordArray(JSON.parse(passwords));
-    }
-    return [];
-  }, []);
+    return passwords ? JSON.parse(passwords) : [];
+  });
 
   const handleChange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
   };
 
   const savePassword = () => {
+    setPasswordArray((prev) => {
+      const updated = [...prev, form];
+      localStorage.setItem("passwords", JSON.stringify(updated));
+      return updated;
+    });
     console.log(form);
   };
   return (

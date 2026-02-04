@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Manager = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setform] = useState({ site: "", username: "", password: "" });
+
   const [passwordArray, setPasswordArray] = useState(() => {
     let passwords = localStorage.getItem("passwords");
     return passwords ? JSON.parse(passwords) : [];
@@ -18,7 +19,7 @@ const Manager = () => {
       localStorage.setItem("passwords", JSON.stringify(updated));
       return updated;
     });
-    console.log(form);
+    console.log([...passwordArray, form]);
   };
   return (
     <>

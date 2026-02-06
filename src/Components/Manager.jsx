@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Manager = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -94,6 +94,47 @@ const Manager = () => {
             ></lord-icon>
             Add Password
           </button>
+        </div>
+        <div className="passwords">
+          {passwordArray.length === 0 ? (
+            <h2 className="text-red-700 text-center font-bold py-3 text-3xl">
+              No passwords to show
+            </h2>
+          ) : (
+            <>
+              <h2 className="text-white font-bold py-3 text-3xl">
+                Your Passwords
+              </h2>
+              <table className="border w-full overflow-hidden rounded-lg">
+                <thead className="bg-green-900 text-white">
+                  <tr>
+                    <th className="lg:py-2 py-1">Website URL</th>
+                    <th className="lg:py-2 py-1">Username</th>
+                    <th className="lg:py-2 py-1">Password</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-green-100 text-black">
+                  {passwordArray.map((item) => {
+                    return (
+                      <tr>
+                        <td className="border-white border-3 text-center py-0.5">
+                          <a href={item.site} target="_blank">
+                            {item.site}
+                          </a>
+                        </td>
+                        <td className="border-white border-3 text-center py-0.5">
+                          {item.username}
+                        </td>
+                        <td className="border-white border-3 text-center py-0.5">
+                          {item.password}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </>
+          )}
         </div>
       </div>
     </>

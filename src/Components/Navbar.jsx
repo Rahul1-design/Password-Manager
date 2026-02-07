@@ -1,27 +1,27 @@
-import React from "react";
-
 const Navbar = () => {
   return (
-    <nav className="bg-slate-900 text-2xl text-white">
-      <div className="mycontainer flex items-center justify-between px-4 py-5 h-14">
-        <div className="logo font-bold">
+    <nav className="bg-slate-900 text-white">
+      <div className="mycontainer flex items-center justify-between h-14">
+        {/* LOGO */}
+        <div className="logo font-bold text-2xl">
           <span className="text-green-700">&lt;</span>
           Pass
           <span className="text-green-700">OP&gt;</span>
         </div>
-        <ul>
-          <li className="flex gap-4">
-            <a className="font-semibold hover:font-bold" href="#">
-              Home
-            </a>
-            <a className="font-semibold hover:font-bold" href="#">
-              About
-            </a>
-            <a className="font-semibold hover:font-bold" href="#">
-              Contact
-            </a>
-          </li>
-        </ul>
+
+        {/* GITHUB BUTTON */}
+        <a
+          href="https://github.com/Rahul1-design"
+          target="_blank"
+          className="cursor-pointer font-semibold flex items-center gap-1 text-lg bg-green-700 px-3 py-1 rounded-xl hover:bg-green-900"
+        >
+          <img
+            className="w-7 invert rounded-full"
+            src="/github.png"
+            alt="GitHub logo"
+          />
+          <span>GitHub</span>
+        </a>
       </div>
     </nav>
   );

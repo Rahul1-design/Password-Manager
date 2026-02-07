@@ -13,12 +13,28 @@ const Manager = () => {
     setform({ ...form, [e.target.name]: e.target.value });
   };
 
+  const deleteButton = (id) => {
+    const updated = passwordArray.filter((item) => item.id !== id);
+    setPasswordArray(updated);
+    localStorage.setItem("passwords", JSON.stringify(updated));
+  };
+
   const savePassword = () => {
+    if (!form.site || !form.username || !form.password) {
+      alert("Fill all Fields");
+      return;
+    }
+
+    const newEntry = {
+      id: Date.now(),
+      ...form,
+    };
     setPasswordArray((prev) => {
-      const updated = [...prev, form];
+      const updated = [...prev, newEntry];
       localStorage.setItem("passwords", JSON.stringify(updated));
       return updated;
     });
+    setform({ site: "", username: "", password: "" });
     console.log([...passwordArray, form]);
   };
   return (
@@ -111,12 +127,13 @@ const Manager = () => {
                     <th className="lg:py-2 py-1">Website URL</th>
                     <th className="lg:py-2 py-1">Username</th>
                     <th className="lg:py-2 py-1">Password</th>
+                    <th className="lg:py-2 py-1 px-1">Delete</th>
                   </tr>
                 </thead>
-                <tbody className="bg-green-100 text-black">
+                <tbody className="bg-green-100 text-black text-sm font-semibold">
                   {passwordArray.map((item) => {
                     return (
-                      <tr>
+                      <tr key={item.id}>
                         <td className="border-white border-3 text-center py-0.5">
                           <a href={item.site} target="_blank">
                             {item.site}
@@ -127,6 +144,15 @@ const Manager = () => {
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
                           {item.password}
+                        </td>
+                        <td className="border-white border-3 text-center py-0.5">
+                          <button onClick={() => deleteButton(item.id)}>
+                            <lord-icon
+                              src="https://cdn.lordicon.com/jzinekkv.json"
+                              trigger="hover"
+                              className="cursor-pointer"
+                            ></lord-icon>
+                          </button>
                         </td>
                       </tr>
                     );

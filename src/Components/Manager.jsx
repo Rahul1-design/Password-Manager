@@ -80,17 +80,17 @@ const Manager = () => {
   };
   return (
     <>
-      <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 "></div>
       <div className="mycontainer ">
-        <h1 className="text-4xl font-bold text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
           <span className="text-green-700">&lt;</span>
           <span className="text-white">Pass</span>
           <span className="text-green-700">OP&gt;</span>
-        </h1>
+        </h2>
         <p className="text-green-700 text-xl text-center font-semibold">
           Your Own Password Manager
         </p>
-        <div className="text-white gap-4 flex flex-col p-4">
+        <div className="text-white gap-4 flex flex-col p-4 sm:p-6 md:p-8">
           <input
             onChange={handleChange}
             value={form.site}
@@ -100,7 +100,7 @@ const Manager = () => {
             name="site"
             id=""
           />
-          <div className="flex justify-between gap-8 w-full ">
+          <div className="flex flex-col sm:flex-row justify-between sm:gap-8 w-full gap-4">
             <input
               onChange={handleChange}
               value={form.username}
@@ -142,7 +142,7 @@ const Manager = () => {
           </div>
           <button
             onClick={savePassword}
-            className="group bg-gray-800 rounded-xl w-1/2 h-8 flex gap-3 cursor-pointer lg:h-10 items-center justify-center hover:bg-gray-600 transition-colors duration-500 font-semibold  mx-auto text-center"
+            className="group bg-gray-800 rounded-xl w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 h-8 flex gap-3 cursor-pointer lg:h-10 items-center justify-center hover:bg-gray-600 transition-colors duration-500 font-semibold  mx-auto text-center"
           >
             <lord-icon
               src="https://cdn.lordicon.com/lzsupfwm.json"
@@ -159,7 +159,7 @@ const Manager = () => {
             </h2>
           ) : (
             <>
-              <h2 className="text-white font-bold py-3 text-3xl">
+              <h2 className="text-white font-bold py-3 text-2xl sm:text-3xl md:text-4xl">
                 Your Passwords
               </h2>
               <table className="border w-full overflow-hidden rounded-lg">
@@ -171,7 +171,7 @@ const Manager = () => {
                     <th className="lg:py-2 py-1 px-1">Action</th>
                   </tr>
                 </thead>
-                <tbody className="bg-green-100 text-black text-sm font-semibold">
+                <tbody className="bg-green-100 text-black text-xs sm:text-sm  font-semibold">
                   {passwordArray.map((item) => {
                     return (
                       <tr key={item.id}>
@@ -184,7 +184,7 @@ const Manager = () => {
                               onClick={() => copyText(item.site, "Website URL")}
                             >
                               <img
-                                className="w-5 cursor-pointer hover:scale-110"
+                                className="w-5 h-5 cursor-pointer hover:scale-110"
                                 src="/copy.png"
                                 alt="Copy Icon"
                               />
@@ -224,7 +224,7 @@ const Manager = () => {
                           </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
-                          <div className="flex items-center justify-around">
+                          <div className="flex items-center gap-1 sm:gap-2 justify-around">
                             <button onClick={() => editButton(item)}>
                               <lord-icon
                                 src="https://cdn.lordicon.com/gwlusjdu.json"

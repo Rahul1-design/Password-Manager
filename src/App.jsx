@@ -11,7 +11,7 @@ function App() {
     <>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <div className="flex-1">
+        <div className="flex-1 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
           <Manager />
         </div>
         <Footer />

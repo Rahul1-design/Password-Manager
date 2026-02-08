@@ -224,20 +224,22 @@ const Manager = () => {
                           </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
-                          <button onClick={() => editButton(item)}>
-                            <lord-icon
-                              src="https://cdn.lordicon.com/gwlusjdu.json"
-                              trigger="hover"
-                              className="w-10 cursor-pointer"
-                            ></lord-icon>
-                          </button>
-                          <button onClick={() => deleteButton(item.id)}>
-                            <lord-icon
-                              src="https://cdn.lordicon.com/jzinekkv.json"
-                              trigger="hover"
-                              className="cursor-pointer"
-                            ></lord-icon>
-                          </button>
+                          <div className="flex items-center justify-around">
+                            <button onClick={() => editButton(item)}>
+                              <lord-icon
+                                src="https://cdn.lordicon.com/gwlusjdu.json"
+                                trigger="hover"
+                                className="w-10 cursor-pointer"
+                              ></lord-icon>
+                            </button>
+                            <button onClick={() => deleteButton(item.id)}>
+                              <lord-icon
+                                src="https://cdn.lordicon.com/jzinekkv.json"
+                                trigger="hover"
+                                className="cursor-pointer"
+                              ></lord-icon>
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     );

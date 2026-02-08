@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Manager = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,11 +18,21 @@ const Manager = () => {
     const updated = passwordArray.filter((item) => item.id !== id);
     setPasswordArray(updated);
     localStorage.setItem("passwords", JSON.stringify(updated));
+    toast.success(`Password deleted successfully`);
+  };
+
+  const copyText = async (text, label) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(`${label} copied successfully!`);
+    } catch (error) {
+      console.log("Copy failed", error);
+    }
   };
 
   const savePassword = () => {
     if (!form.site || !form.username || !form.password) {
-      alert("Fill all Fields");
+      toast.warning("Please fill all fields");
       return;
     }
 
@@ -35,7 +46,8 @@ const Manager = () => {
       return updated;
     });
     setform({ site: "", username: "", password: "" });
-    console.log([...passwordArray, form]);
+    console.log(passwordArray);
+    toast.success("Data added successfully!");
   };
   return (
     <>
@@ -135,15 +147,52 @@ const Manager = () => {
                     return (
                       <tr key={item.id}>
                         <td className="border-white border-3 text-center py-0.5">
-                          <a href={item.site} target="_blank">
-                            {item.site}
-                          </a>
+                          <div className="flex items-center justify-center gap-2 hover">
+                            <a href={item.site} target="_blank">
+                              {item.site}
+                            </a>
+                            <button
+                              onClick={() => copyText(item.site, "Website URL")}
+                            >
+                              <img
+                                className="w-5 cursor-pointer hover:scale-110"
+                                src="/copy.png"
+                                alt="Copy Icon"
+                              />
+                            </button>
+                          </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
-                          {item.username}
+                          <div className="flex items-center justify-center gap-2 hover">
+                            <span>{item.username}</span>
+                            <button
+                              onClick={() =>
+                                copyText(item.username, "Username")
+                              }
+                            >
+                              <img
+                                className="w-5 cursor-pointer hover:scale-110"
+                                src="/copy.png"
+                                alt=""
+                              />
+                            </button>
+                          </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
-                          {item.password}
+                          <div className="flex items-center justify-center gap-2 hover">
+                            <span>{item.password}</span>
+                            <button
+                              onClick={() =>
+                                copyText(item.password, "Password")
+                              }
+                            >
+                              <img
+                                className="w-5 cursor-pointer hover:scale-110"
+                                src="/copy.png"
+                                alt=""
+                              />
+                            </button>
+                          </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
                           <button onClick={() => deleteButton(item.id)}>

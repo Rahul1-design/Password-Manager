@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 const Manager = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setform] = useState({ site: "", username: "", password: "" });
+  const [editingId, setEditingId] = useState(null);
 
   const [passwordArray, setPasswordArray] = useState(() => {
     let passwords = localStorage.getItem("passwords");
@@ -30,23 +31,51 @@ const Manager = () => {
     }
   };
 
+  const editButton = (item) => {
+    setform({
+      site: item.site,
+      username: item.username,
+      password: item.password,
+    });
+
+    setEditingId(item.id);
+
+    toast.info("Edit mode enabled");
+  };
+
   const savePassword = () => {
     if (!form.site || !form.username || !form.password) {
-      toast.warning("Please fill all fields");
+      toast.warning("Please fill the form.");
       return;
     }
 
-    const newEntry = {
-      id: Date.now(),
-      ...form,
-    };
+    //Edit Mode
+    if (editingId) {
+      const updated = passwordArray.map((item) => {
+        return item.id === editingId ? { ...item, ...form } : item;
+      });
+      setPasswordArray(updated);
+
+      localStorage.setItem("passwords", JSON.stringify(updated));
+
+      setEditingId(null);
+
+      setform({ site: "", username: "", password: "" });
+
+      toast.success("Data edited successfully!");
+      return;
+    }
+
+    //Save Mode
+    let newEntry = { id: Date.now(), ...form };
+
     setPasswordArray((prev) => {
       const updated = [...prev, newEntry];
       localStorage.setItem("passwords", JSON.stringify(updated));
       return updated;
     });
+
     setform({ site: "", username: "", password: "" });
-    console.log(passwordArray);
     toast.success("Data added successfully!");
   };
   return (
@@ -120,7 +149,7 @@ const Manager = () => {
               trigger="hover"
               className="group-hover:animate-bounce"
             ></lord-icon>
-            Add Password
+            {editingId ? "Update Password" : "Add Password"}
           </button>
         </div>
         <div className="passwords">
@@ -139,7 +168,7 @@ const Manager = () => {
                     <th className="lg:py-2 py-1">Website URL</th>
                     <th className="lg:py-2 py-1">Username</th>
                     <th className="lg:py-2 py-1">Password</th>
-                    <th className="lg:py-2 py-1 px-1">Delete</th>
+                    <th className="lg:py-2 py-1 px-1">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-green-100 text-black text-sm font-semibold">
@@ -195,6 +224,13 @@ const Manager = () => {
                           </div>
                         </td>
                         <td className="border-white border-3 text-center py-0.5">
+                          <button onClick={() => editButton(item)}>
+                            <lord-icon
+                              src="https://cdn.lordicon.com/gwlusjdu.json"
+                              trigger="hover"
+                              className="w-10 cursor-pointer"
+                            ></lord-icon>
+                          </button>
                           <button onClick={() => deleteButton(item.id)}>
                             <lord-icon
                               src="https://cdn.lordicon.com/jzinekkv.json"
